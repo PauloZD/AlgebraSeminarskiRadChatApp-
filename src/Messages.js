@@ -6,19 +6,19 @@ class Messages extends Component {
     const {messages} = this.props;
     return (
       <ul className="Messages-list">
-        {messages.map(m => this.renderMessage(m))}
+        {messages.map((message, index) => this.renderMessage(message, index))}
       </ul>
     );
   }
 
-  renderMessage(message) {
+  renderMessage(message, index) {
     const {member, text} = message;
     const {currentMember} = this.props;
     const messageFromMe = member.id === currentMember.id;
     const className = messageFromMe ?
       "Messages-message currentMember" : "Messages-message";
     return (
-      <li className={className}>
+      <li className={className} key={index}>
       <span
         className="avatar"
         style={{backgroundColor: member.clientData.color}}
